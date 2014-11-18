@@ -4,6 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var inventory = require('./inventory');
 
 var expressHbs = require("express-handlebars");
 
@@ -20,9 +21,15 @@ app.set('view engine', 'hbs');
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
 
+/* rendering express home page!
 app.get('/', function (req, res) {
     res.render('index', {title: 'Express'});
 });
+*/
+
+// list all inventory items
+app.route('/').get(inventory.list);
+
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
